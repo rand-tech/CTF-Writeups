@@ -1,3 +1,13 @@
+---
+author: "rand0m"
+title: "zer0pts CTF 2022 Writeup"
+date: "2022-03-22"
+description: "Write up for zer0pts CTF 2022 / crypto / Anti-Fermat"
+tags: ["crypto", "CTF"]
+categories: ["CTF", "crypto", "zer0pts CTF"]
+draft: false
+---
+
 # zer0pts CTF 2022
 
 ## crypto
