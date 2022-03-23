@@ -4,7 +4,7 @@ title: "zer0pts CTF 2022 Writeup"
 date: "2022-03-22"
 description: "Write up for zer0pts CTF 2022 / crypto / Anti-Fermat"
 tags: ["crypto", "CTF", "zer0pts CTF", "Writeup"]
-categories: ["CTF", "Writeup". "Crypto"]
+categories: ["CTF", "Writeup","Crypto"]
 draft: false
 ---
 
