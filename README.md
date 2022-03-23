@@ -1,2 +1,0 @@
-# Writeups
-My CTF writeups
