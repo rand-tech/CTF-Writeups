@@ -5,7 +5,7 @@ date: 2022-03-27T09:02:37+09:00
 description: "Write up for LINE CTF 2022 / crypto / ss-puzzle"
 tags: ["crypto", "CTF", "LINE CTF", "Writeup"]
 categories: ["CTF", "Writeup", "Crypto"]
-draft: true
+draft: false
 ---
 
 This article offers a writeup for the LINE CTF 2022's crypto challenge, "ss-puzzle."
