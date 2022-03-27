@@ -12,7 +12,6 @@ This article offers a writeup for the zer0pts CTF 2022's crypto challenge, "Anti
 
 <!--more-->
 
-# zer0pts CTF 2022
 
 ## crypto
 ### Anti-Fermat
