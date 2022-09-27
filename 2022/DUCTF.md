@@ -1,7 +1,7 @@
 ---
 title: "DUCTF 2022 Writeup"
 author: "rand0m"
-date: 2022-09-27T20:16
+date: 2022-09-27
 description: "Writeups for DUCTF 2022"
 categories: ["CTF", "Writeup"]
 tags: ["crypto", "CTF", "DFIR", "docker", "Writeup"]
@@ -15,13 +15,13 @@ This article offers a writeup for the DUCTF's DFIR challenge, "ogres are like on
 ## DFIR
 ### ogres are like onions
 
-Description:
-> if you see this you have to post in #memes thems the rules
+Description:  
+> if you see this you have to post in #memes thems the rules  
 > `docker run -tp 8000:8000 downunderctf/onions`
 
 
 ## What we know
-- docker internals[^1][^2]
+- docker internals[^1][^2]  
 - Docker images can accidentally contain sensitive information when misconfigured[^4].
     - sidenote: How to properly handle secret files[^3]
 - Hashes for each layer are missing (This can be done through the [`--squash`](https://docs.docker.com/engine/reference/commandline/build/#squash-an-images-layers---squash-experimental) argument, though this is currently an experimental feature.)
@@ -50,12 +50,12 @@ Description:
     <missing>      6 weeks ago   /bin/sh -c #(nop) ADD file:2a949686d9886ac7c…   5.54MB
     ```
 
-To get the flag:
-1. [save the docker image](https://docs.docker.com/engine/reference/commandline/save/) to a tar file
+To get the flag:  
+1. [save the docker image](https://docs.docker.com/engine/reference/commandline/save/) to a tar file  
   `docker save downunderctf/onions:latest > onions.tar`
-2. (recursively) untar the saved image file
+2. (recursively) untar the saved image file  
   `binwalk -e --depth=3 onions.tar`
-3. locate the flag
+3. locate the flag  
   `❯ find . -name "flag*"`
 
 
