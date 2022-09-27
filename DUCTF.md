@@ -1,7 +1,7 @@
 ---
 title: "DUCTF 2022 Writeup"
 author: "rand0m"
-date: 2022-09-27T20:16
+date: 2022-09-27
 description: "Writeups for DUCTF 2022"
 categories: ["CTF", "Writeup"]
 tags: ["crypto", "CTF", "DFIR", "docker", "Writeup"]
