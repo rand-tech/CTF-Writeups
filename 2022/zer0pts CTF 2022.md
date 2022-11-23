@@ -6,6 +6,7 @@ description: "Write up for zer0pts CTF 2022 / crypto / Anti-Fermat"
 tags: ["crypto", "CTF", "zer0pts CTF", "Writeup"]
 categories: ["CTF", "Writeup","Crypto"]
 draft: false
+math: true
 ---
 
 This article offers a writeup for the zer0pts CTF 2022's crypto challenge, "Anti-Fermat."
