@@ -167,7 +167,7 @@ int __cdecl main(int argc, const char **argv, const char **envp) {
 
 
 
-```cpp
+```python
 import angr
 
 file_name = '/chall'
