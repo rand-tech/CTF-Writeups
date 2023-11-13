@@ -3,22 +3,25 @@ author: "rand0m"
 title: "CakeCTF 2023: Gaming VM	Writeup"
 date: "2023-11-12"
 description: "A writeup for CakeCTF 2023: Gaming VM"
-tags: [ "CTF", "Writeup", "reversing", "angr", "z3", "qiling", "ckpt", "wasm"]
+tags: [ "CTF", "Writeup", "reversing", "dynamic analysis" ]
 categories: ["CTF", "Writeup", "Reversing"]
 draft: true
 ---
 
-# Gaming VM
+# Gaming VM (14 solves, 239 points)
 
-> title: Gaming VM
-description: VM reversing for beginners :)
-author: ptr-yudai
->
+> title: Gaming VM  
+> description: VM reversing for beginners :)  
+> author: ptr-yudai
 >
 > Files:
 >
-> - q3vm
-> - flag.qvm
+> - [q3vm](https://github.com/sajjadium/ctf-archives/blob/main/ctfs/CakeCTF/2023/rev/Gaming_VM/q3vm)
+> - [flag.qvm](https://github.com/sajjadium/ctf-archives/blob/main/ctfs/CakeCTF/2023/rev/Gaming_VM/flag.qvm)
+
+追記:
+チーム[BunkyoWesterns](https://ctftime.org/team/269765)で参加し3位だった。AVTOKYOから0時に帰ってきた時にはrevはこれしか残っていなかったので1問だけ解いた :cake:。楽しかった！
+
 
 ---
 
@@ -28,9 +31,7 @@ author: ptr-yudai
 
 IDAで開くとstack based VMっぽいことがわかる。
 
-![while (2) * 2があり、これは何? となる](img/b.png)
-
-while (2) * 2があり、これは何? となる
+![`while (2) * 2`があり、これは何? となる](img/b.png "while (2) * 2があり、これは何? となる")
 
 q3vmについて調べると、<https://github.com/jnz/q3vm> が見つかる。disassemblerがないか調べると、<https://github.com/brugal/q3vm> が見つかる。
 
@@ -39,16 +40,6 @@ q3vmについて調べると、<https://github.com/jnz/q3vm> が見つかる。d
 ![diff](img/a.png)
 
 diffが存在し、問題バイナリにおいてsystem callが拡張されていることがわかる。
-
-<!-- two column  -->
-<!-- <div class="row">
-<div class="column">
-    <img src="img/Untitled.png" alt="diff" style="width:100%">
-</div>
-<div class="column">
-    <img src="img/Untitled%201.png" alt="diff" style="width:100%">
-</div>
-</div> -->
 
 ![Untitled](img/Untitled.png)
 
@@ -70,8 +61,8 @@ VMの処理を追おうとしたがCFGを見て得策でないと判断した。
 
 フラグに含まれる文字が既知であることと、フラグがleetを含む英文であることを用いて、フラグをguessしようとした。しかし、複雑すぎてダメだった (Guess力が足りないとも言う)。
 
-```cpp
-    abcdefghijklmnopqrstuvwxyz: A-Z
+```txt
+    abcdefghijklmnopqrstuvwxyz: a-z
 013_a   ef  i klmn pqrstuvw   : 持っている文字
 ```
 
@@ -92,6 +83,12 @@ Flag: `CakeCTF{A_s1mpl3_VM_wr1tt3n_f0r_Quake_III}`
 ### お気持ち振り返り
 
 - もっと早く解けるようになりたい
+
+### 追加: 振り返り
+
+- <https://blog.akiym.com/entry/2023/11/12/200742#Gaming-VM>
+  - > とりあえずgdbで動かしながら適当なVMの命令に相当するところでbreakしつつ値を見てみるのを試していたところ、goto_OP_EQでほぼflagの比較がされていそうなことに気づきました。ブルートフォースするスクリプトを書きつつ、途中で調整が必要なところは面倒になってgdbを動かしつつ手で求めました。
+  - CFGが複雑に見えるがsimilarityが高いことからそこまで身構えなくても良く、gdbでログを取ればいける。なるほど。
 
 ---
 
