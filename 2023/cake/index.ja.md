@@ -22,7 +22,6 @@ draft: true
 追記:
 チーム[BunkyoWesterns](https://ctftime.org/team/269765)で参加し3位だった。AVTOKYOから0時に帰ってきた時にはrevはこれしか残っていなかったので1問だけ解いた :cake:。楽しかった！
 
-
 ---
 
 ### 初見
@@ -41,9 +40,19 @@ q3vmについて調べると、<https://github.com/jnz/q3vm> が見つかる。d
 
 diffが存在し、問題バイナリにおいてsystem callが拡張されていることがわかる。
 
-![Untitled](img/Untitled.png)
+<div style="display: flex; justify-content: space-between;">
 
-![Untitled](img/Untitled%201.png)
+<div style="width: 49%;">
+
+![syscall chal binary](img/Untitled.png)
+
+</div>
+<div style="width: 49%;">
+
+![syscall original](img/Untitled%201.png)
+
+</div>
+</div>
 
 この結果に基づいて、disassemblerの`*_syscall.asm`の該当箇所を更新する。
 
@@ -89,6 +98,36 @@ Flag: `CakeCTF{A_s1mpl3_VM_wr1tt3n_f0r_Quake_III}`
 - <https://blog.akiym.com/entry/2023/11/12/200742#Gaming-VM>
   - > とりあえずgdbで動かしながら適当なVMの命令に相当するところでbreakしつつ値を見てみるのを試していたところ、goto_OP_EQでほぼflagの比較がされていそうなことに気づきました。ブルートフォースするスクリプトを書きつつ、途中で調整が必要なところは面倒になってgdbを動かしつつ手で求めました。
   - CFGが複雑に見えるがsimilarityが高いことからそこまで身構えなくても良く、gdbでログを取ればいける。なるほど。
+
+#### 色々なCFGを見てみる
+
+気になったので、色々なツールでCFGを生成してみる。
+
+- IDA
+    ![CFG IDA](./img/ida.jpg "Labelのシンボルが利用されているが、CFGのレイアウトからマクロにより生成された構造化されたパターンに気づきにくい。")
+- Binary Ninja
+    ![CFG Binary Ninja](./img/bin.jpg "Labelのシンボルが利用されていないが、CFGのレイアウトから構造化されたパターンに気づけるかもしれない。")
+- angr
+    <div style="display: flex; justify-content: space-between;">
+
+    <div style="width: 49%;">
+
+    ![CFG angr](./img/an.jpg "CFGのレイアウトに関しては一番わかりやすいかもしれない。Decompile時の処理が遅く、メインスレッドをブロックするのが難点。結局psuedo codeへのliftに失敗した。")
+
+    </div>
+    <div style="width: 49%;">
+
+    ![CFG angr](./img/s.jpg "instructionが横に並んでいるように見える。")
+
+    </div>
+    </div>
+
+- Ghidra
+    <div style="width: 50%;">
+
+    ![CFG Ghidra](./img/ghidra.jpg "Ghidraは関数特定に失敗した (のでデコンパイルも失敗する)。設定でリミットを変更する、もしくは、手動で修正すれば解決できるかもしれない。面倒なので試していない。")
+
+    </div>
 
 ---
 
