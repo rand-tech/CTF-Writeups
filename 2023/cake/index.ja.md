@@ -5,7 +5,6 @@ date: "2023-11-12"
 description: "A writeup for CakeCTF 2023: Gaming VM"
 tags: [ "CTF", "Writeup", "reversing", "dynamic analysis" ]
 categories: ["CTF", "Writeup", "Reversing"]
-draft: true
 ---
 
 # Gaming VM (14 solves, 239 points)
@@ -16,11 +15,21 @@ draft: true
 >
 > Files:
 >
-> - [q3vm](https://github.com/sajjadium/ctf-archives/blob/main/ctfs/CakeCTF/2023/rev/Gaming_VM/q3vm)
-> - [flag.qvm](https://github.com/sajjadium/ctf-archives/blob/main/ctfs/CakeCTF/2023/rev/Gaming_VM/flag.qvm)
+> - q3vm
+> - flag.qvm
+
+(ファイルは[ここ](https://github.com/sajjadium/ctf-archives/tree/main/ctfs/CakeCTF/2023/rev/Gaming_VM)にある)
 
 追記:
 チーム[BunkyoWesterns](https://ctftime.org/team/269765)で参加し3位だった。AVTOKYOから0時に帰ってきた時にはrevはこれしか残っていなかったので1問だけ解いた :cake:。楽しかった！
+
+チームメンバーのWriteup:
+
+- [Satoki](https://twitter.com/satoki00)さん: [ctf_writeups/CakeCTF_2023/Word_Tower at master · satoki/ctf_writeups](https://github.com/satoki/ctf_writeups/tree/master/CakeCTF_2023/Word_Tower)
+- [st98](https://twitter.com/st98_)さん: [CakeCTF 2023 writeup - st98 の日記帳 - コピー](https://nanimokangaeteinai.hateblo.jp/)
+- [kanon](https://twitter.com/_k4non)さん: [cakectf 2023 | kanon](https://kanzya.github.io/posts/cakectf/)
+- [task4233](https://twitter.com/task4233)さん: [CakeCTF 2023 Writeup - note](https://blog.task4233.dev/posts/writeup-cake-ctf-2023/)
+- [チョコラスク](https://twitter.com/nuo_chocorusk)さん: [CakeCTF 2023 writeup - チョコラスクのブログ](https://chocorusk.hatenablog.com/entry/2023/11/14/051905)
 
 ---
 
@@ -125,7 +134,7 @@ Flag: `CakeCTF{A_s1mpl3_VM_wr1tt3n_f0r_Quake_III}`
 - Ghidra
     <div style="width: 50%;">
 
-    ![CFG Ghidra](./img/ghidra.jpg "Ghidraは関数特定に失敗した (のでデコンパイルも失敗する)。設定でリミットを変更する、もしくは、手動で修正すれば解決できるかもしれない。面倒なので試していない。")
+    ![CFG Ghidra](./img/ghidra.jpg "Ghidraはliftingに失敗する(Indirect branch周りの処理が原因かな)。設定でリミットを変更する、もしくは、手動で修正すれば解決できるかもしれない。面倒なので試していない。")
 
     </div>
 
